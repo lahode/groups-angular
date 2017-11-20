@@ -3,11 +3,17 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { GroupComponent } from './group/group.component';
+import { HomeComponent } from './home/home.component';
+import { NewGroupComponent } from './new-group/new-group.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GroupComponent,
+    HomeComponent,
+    NewGroupComponent
   ],
   imports: [
     BrowserModule

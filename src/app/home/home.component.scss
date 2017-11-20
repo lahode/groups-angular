@@ -1,0 +1,24 @@
+#home {
+    h2 {
+      font-weight: normal;
+    }
+    
+    .card {
+      background-color: #eee;
+      box-shadow: 10px 10px 5px #888888;
+      margin: 10px;
+      padding: 10px;
+      min-height: 200px;
+    }
+  
+    .private {
+      background-color: #e66;
+    }
+  
+    .pagination {
+      padding-top: 80px;
+      display: block;
+      margin: 0 auto;
+      width: 200px;
+    }
+  }
