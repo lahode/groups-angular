@@ -41,8 +41,8 @@ export class GroupService {
   }
 
   // Get single group
-  public getGroup() {
-    return this.getGroups()[4];
+  public getGroup(id: number) {
+    return this.getGroups()[id];
   }
 
 }
