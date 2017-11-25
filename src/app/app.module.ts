@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { GroupComponent } from './group/group.component';
 import { HomeComponent } from './home/home.component';
 import { NewGroupComponent } from './new-group/new-group.component';
-
-import { GroupService } from '../services/group/group.service';
 import { MenuComponent } from './menu/menu.component';
 import { PagerComponent } from './pager/pager.component';
+
+import { GroupService } from '../services/group/group.service';
+import { LogService } from '../services/log/log.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PagerComponent } from './pager/pager.component';
     BrowserModule
   ],
   providers: [
-    GroupService
+    GroupService,
+    LogService
   ],
   bootstrap: [AppComponent]
 })
