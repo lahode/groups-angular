@@ -1,7 +1,7 @@
 <ul class="pagination">
-  <li class="active"><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
+  <li *ngFor="let i of totalElements" [ngClass]="currentpos == i ? 'active' : ''">
+    <ng-template [ngIf]="i % maxperpage == 0">
+      <a href="#" (click)="changePosition(i / maxperpage)">{{ (i / maxperpage) + 1 }}</a>
+    </ng-template>
+  </li>
 </ul>

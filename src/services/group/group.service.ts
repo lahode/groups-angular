@@ -28,6 +28,18 @@ export class GroupService {
     return groups;
   }
 
+  // Retourne la tranche des groupes à afficher pour l'affichage
+  public getGroupRange(from, to) {
+    const allGroups = this.getGroups();
+    let groups = [];
+    for (let i = from; i <= to; i++) {
+      if (i < allGroups.length) {
+        groups.push(allGroups[i]);
+      }
+    }
+    return groups;
+  }
+
   // Get single group
   public getGroup() {
     return this.getGroups()[4];

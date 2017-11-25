@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <app-pager></app-pager>
+    <app-pager [totalelements]="groupCount" [maxperpage]="maxPerPage" [currentpos]="fromto.from" (fromTo)="changeResult($event)"></app-pager>
     <div class="log">
       <ul>
         <li *ngFor="let grouplog of logGroupSeen">{{ grouplog }}</li>
