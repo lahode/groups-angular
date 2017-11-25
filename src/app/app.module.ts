@@ -7,6 +7,7 @@ import { GroupComponent } from './group/group.component';
 import { HomeComponent } from './home/home.component';
 import { NewGroupComponent } from './new-group/new-group.component';
 
+import { GroupService } from '../services/group/group.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { NewGroupComponent } from './new-group/new-group.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    GroupService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
