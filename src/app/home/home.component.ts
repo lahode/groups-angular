@@ -11,11 +11,20 @@ import { Group } from '../../models/group.model';
 export class HomeComponent implements OnInit {
 
   groups: Group[];
+  groupDetail: Group | null = null;
 
   constructor(private groupService: GroupService) { }
 
   ngOnInit() {
     this.getGroups();
+  }
+
+  showGroup(group: Group) {
+    this.groupDetail = group;
+  }
+
+  hideGroup() {
+    this.groupDetail = null;
   }
 
   getGroups() {

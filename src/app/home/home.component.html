@@ -1,14 +1,20 @@
 <div id="home">
-  <h2>Groups you own</h2>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-4" *ngFor="let group of groups">
-        <div class="card" ngClass="group.access ? 'private' : ''">
-          <h3>{{ group.name }}</h3>
-          <p>{{ group.description }}</p>
+  <div *ngIf="groupDetail; then displayGroupDetail else displayGroupList"></div>
+  <ng-template #displayGroupDetail >
+    <app-group [group]="groupDetail" (hideGroup)="hideGroup()"></app-group>
+  </ng-template>
+  <ng-template #displayGroupList >
+    <h2>Groups you own</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let group of groups">
+          <div class="card" [ngClass]="group.access ? 'private' : ''" (click)="showGroup(group)">
+            <h3>{{ group.name }}</h3>
+            <p>{{ group.description }}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <app-pager></app-pager>
+    <app-pager></app-pager>
+  </ng-template>
 </div>

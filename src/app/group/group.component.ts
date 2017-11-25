@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { GroupService } from '../../services/group/group.service';
 import { Group } from '../../models/group.model';
@@ -8,18 +8,19 @@ import { Group } from '../../models/group.model';
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.scss']
 })
-export class GroupComponent implements OnInit {
+export class GroupComponent {
 
-  group: Group;
+  @Input() group: Group;
+  @Output() hideGroup = new EventEmitter<boolean>();
 
   constructor(private groupService: GroupService) { }
 
-  ngOnInit() {
-    this.group = this.groupService.getGroup();
-  }
-
   getMemberCount() {
     return this.group.members ? this.group.members.length : '';
+  }
+
+  quitGroupDetail() {
+    this.hideGroup.emit(true);
   }
 
 }
