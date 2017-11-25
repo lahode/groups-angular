@@ -28,4 +28,9 @@ export class GroupService {
     return groups;
   }
 
+  // Get single group
+  public getGroup() {
+    return this.getGroups()[4];
+  }
+
 }
