@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { GroupService } from '../../services/group/group.service';
 import { LogService } from '../../services/log/log.service';
@@ -14,14 +15,14 @@ const MAX_PER_PAGE = 6;
 export class HomeComponent implements OnInit {
 
   groups: Group[];
-  groupDetail: Group | null = null;
   logGroupSeen: string[] = [];
   groupCount: number = 0;
   maxPerPage: number = MAX_PER_PAGE;
   fromto: any = {from: 0, to: MAX_PER_PAGE - 1};
 
   constructor(private groupService: GroupService,
-              private logService: LogService) { }
+              private logService: LogService,
+              private router: Router) { }
 
   // Lance la récupération des groupes à la création du composant
   // Ajoute un observable permettant de mettre à jour les logs
@@ -33,13 +34,8 @@ export class HomeComponent implements OnInit {
   }
 
   // Affiche le composant "Détail d'un groupe"
-  showGroup(group: Group) {
-    this.groupDetail = group;
-  }
-
-  // Affiche le composant "Liste des groupes"
-  hideGroup() {
-    this.groupDetail = null;
+  showGroup(groupID: number) {
+    this.router.navigate(['/group/' + groupID + '/detail']);
   }
 
   // Récupère le nombre total des groupes et sélectionne les groupes à afficher

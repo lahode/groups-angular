@@ -1,25 +1,19 @@
 <div id="home">
-  <div *ngIf="groupDetail; then displayGroupDetail else displayGroupList"></div>
-  <ng-template #displayGroupDetail >
-    <app-group [group]="groupDetail" (hideGroup)="hideGroup()"></app-group>
-  </ng-template>
-  <ng-template #displayGroupList >
-    <h2>Groups you own</h2>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4" *ngFor="let group of groups">
-          <div class="card" [ngClass]="group.access ? 'private' : ''" (click)="showGroup(group)">
-            <h3>{{ group.name }}</h3>
-            <p>{{ group.description }}</p>
-          </div>
+  <h2>Groups you own</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let group of groups; let i = index">
+        <div class="card" [ngClass]="group.access ? 'private' : ''" (click)="showGroup(i + fromto.from)">
+          <h3>{{ group.name }}</h3>
+          <p>{{ group.description }}</p>
         </div>
       </div>
     </div>
-    <app-pager [totalelements]="groupCount" [maxperpage]="maxPerPage" [currentpos]="fromto.from" (fromTo)="changeResult($event)"></app-pager>
-    <div class="log">
-      <ul>
-        <li *ngFor="let grouplog of logGroupSeen">{{ grouplog }}</li>
-      </ul>
-    </div>
-  </ng-template>
+  </div>
+  <app-pager [totalelements]="groupCount" [maxperpage]="maxPerPage" [currentpos]="fromto.from" (fromTo)="changeResult($event)"></app-pager>
+  <div class="log">
+    <ul>
+      <li *ngFor="let grouplog of logGroupSeen">{{ grouplog }}</li>
+    </ul>
+  </div>
 </div>

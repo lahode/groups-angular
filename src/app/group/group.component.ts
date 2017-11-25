@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { GroupService } from '../../services/group/group.service';
 import { LogService } from '../../services/log/log.service';
@@ -12,12 +12,12 @@ import { Group } from '../../models/group.model';
 })
 export class GroupComponent implements OnInit {
 
-  @Input() group: Group;
-  @Output() hideGroup = new EventEmitter<boolean>();
+  group: Group;
 
   constructor(private groupService: GroupService,
               private logService: LogService,
-              private route:ActivatedRoute) { }
+              private route:ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe( params => {
@@ -31,7 +31,7 @@ export class GroupComponent implements OnInit {
   }
 
   quitGroupDetail() {
-    this.hideGroup.emit(true);
+    this.router.navigate(['/']);
   }
 
 }
