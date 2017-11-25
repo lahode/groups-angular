@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { createRoutes } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { GroupComponent } from './group/group.component';
@@ -25,7 +28,8 @@ import { LogService } from '../services/log/log.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(createRoutes, { useHash: false }),
   ],
   providers: [
     GroupService,
