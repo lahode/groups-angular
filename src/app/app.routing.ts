@@ -2,7 +2,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { NewGroupComponent } from './new-group/new-group.component';
-import { GroupComponent } from './group/group.component';
 
 export const createRoutes: Routes = [
   {
@@ -15,7 +14,7 @@ export const createRoutes: Routes = [
   },
   {
     path: 'group/:id/detail',
-    component: GroupComponent
+    loadChildren: './group/group.module#GroupModule',
   },
   {
     path: '**',

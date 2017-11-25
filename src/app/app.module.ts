@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { createRoutes } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { GroupComponent } from './group/group.component';
 import { HomeComponent } from './home/home.component';
 import { NewGroupComponent } from './new-group/new-group.component';
 import { MenuComponent } from './menu/menu.component';
@@ -19,7 +18,6 @@ import { LogService } from '../services/log/log.service';
 @NgModule({
   declarations: [
     AppComponent,
-    GroupComponent,
     HomeComponent,
     NewGroupComponent,
     MenuComponent,
