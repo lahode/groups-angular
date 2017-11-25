@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { NewGroupComponent } from './new-group/new-group.component';
 import { MenuComponent } from './menu/menu.component';
 import { PagerComponent } from './pager/pager.component';
+import { SwitchInputComponent } from './switch-input/switch-input.component';
 
 import { GroupService } from '../services/group/group.service';
 import { LogService } from '../services/log/log.service';
@@ -19,7 +20,8 @@ import { LogService } from '../services/log/log.service';
     HomeComponent,
     NewGroupComponent,
     MenuComponent,
-    PagerComponent
+    PagerComponent,
+    SwitchInputComponent
   ],
   imports: [
     BrowserModule,

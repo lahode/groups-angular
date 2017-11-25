@@ -1,0 +1,10 @@
+<div class="switch-input">
+  <div
+    id="on"
+    (click)="switched(true)"
+    [ngClass]="{active: value}">On</div>
+  <div
+    id="off"
+    (click)="switched(false)"
+    [ngClass]="{active: !value}">Off</div>
+</div> 

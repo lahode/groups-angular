@@ -23,6 +23,7 @@
       <label><input type="checkbox" [(ngModel)]="group.pub"> Public</label>
       <p><small>A 'public' group can be used by...</small></p>
     </div>
+    <switch-input [value]="group.visibility" (input)="changeVisibility($event)"></switch-input>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="save()">OK</button>
     <p>{{ group | json }}</p>
   </div>
