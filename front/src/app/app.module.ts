@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { GroupService } from '../services/group/group.service';
 import { LogService } from '../services/log/log.service';
 import { AuthService } from '../services/auth/auth.service';
+import { AuthguardService } from '../services/authguard/authguard.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AuthService } from '../services/auth/auth.service';
   providers: [
     GroupService,
     LogService,
-    AuthService
+    AuthService,
+    AuthguardService
   ],
   bootstrap: [AppComponent]
 })

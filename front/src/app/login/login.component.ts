@@ -17,6 +17,10 @@ export class LoginComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
+    // Vérifie que l'utilisateur n'est pas loggué, sinon renvoie à la home page
+    this.authService.checkAuth().subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 
   login() {
