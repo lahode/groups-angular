@@ -13,6 +13,7 @@ import { MenuComponent } from './menu/menu.component';
 import { PagerComponent } from './pager/pager.component';
 import { SwitchInputComponent } from './switch-input/switch-input.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 import { GroupService } from '../services/group/group.service';
 import { LogService } from '../services/log/log.service';
@@ -27,7 +28,8 @@ import { AuthguardService } from '../services/authguard/authguard.service';
     MenuComponent,
     PagerComponent,
     SwitchInputComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

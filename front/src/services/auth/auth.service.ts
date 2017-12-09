@@ -43,6 +43,16 @@ export class AuthService {
       .catch(error => {throw error.error.message ? error.error.message : 'Erreur de connexion au serveur'});
   }
 
+  // Signup
+  public signup(username: string, password: string) : Observable<any> {
+    return this.http.post(environment.endpoint + 'signup', {username, password})
+      .map((response:any) => {
+        this.authUser.next(response.user);
+        localStorage.setItem('token', response.token);
+      })
+      .catch(error => {throw error.error.message ? error.error.message : 'Erreur de connexion au serveur'});
+  }
+
   // Log out
   public logout() : void {
     this.authUser.next(null);

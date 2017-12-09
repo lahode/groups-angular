@@ -5,6 +5,7 @@ import { AuthguardService } from '../services/authguard/authguard.service';
 import { HomeComponent } from './home/home.component';
 import { NewGroupComponent } from './new-group/new-group.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 export const createRoutes: Routes = [
   {
@@ -25,6 +26,10 @@ export const createRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
   },
   {
     path: '**',
