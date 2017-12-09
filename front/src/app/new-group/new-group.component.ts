@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { Group } from '../../models/group.model';
 
 import { GroupService } from '../../services/group/group.service';
-import { AuthService } from '../../services/auth/auth.service';
 
 export const options = ['Anyone can see the list of members',
                         'Only the owner can see the list of members'];
@@ -22,7 +22,7 @@ export class NewGroupComponent implements OnInit {
   groupSaved: boolean = false;
 
   constructor(private groupService: GroupService,
-              private authService: AuthService,
+              private store: Store<any>,
               private router: Router) {}
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class NewGroupComponent implements OnInit {
   }
 
   save() {
-    this.authService.user$.first().subscribe((user) => {
+    this.store.select(state => state.user).first().subscribe((user) => {
       this.group._id = undefined;
       this.group.owner = user._id;
       this.groupService.save(this.group).subscribe((e) => {

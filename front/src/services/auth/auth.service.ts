@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from "rxjs";
+import { Observable } from "rxjs";
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-
-import { User } from '../../models/user.model';
 
 import { environment } from '../../environments/environment';
 
@@ -12,8 +10,6 @@ import { environment } from '../../environments/environment';
 export class AuthService {
 
   private headers: any;
-  private authUser = new BehaviorSubject(null);
-  public user$: Observable<User> = this.authUser.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +21,7 @@ export class AuthService {
     // Launch request
     return this.http.get(environment.endpoint + 'api/check-auth', this.headers)
       .map((response:any) => {
-        this.authUser.next(response.user);
+        return response.user;
       })
       .catch(error => {
         localStorage.removeItem('token');
@@ -37,7 +33,6 @@ export class AuthService {
   public login(username: string, password: string) : Observable<any> {
     return this.http.post(environment.endpoint + 'login', {username, password})
       .map((response:any) => {
-        this.authUser.next(response.user);
         localStorage.setItem('token', response.token);
       })
       .catch(error => {throw error.error.message ? error.error.message : 'Erreur de connexion au serveur'});
@@ -47,7 +42,6 @@ export class AuthService {
   public signup(username: string, password: string) : Observable<any> {
     return this.http.post(environment.endpoint + 'signup', {username, password})
       .map((response:any) => {
-        this.authUser.next(response.user);
         localStorage.setItem('token', response.token);
       })
       .catch(error => {throw error.error.message ? error.error.message : 'Erreur de connexion au serveur'});
@@ -55,7 +49,6 @@ export class AuthService {
 
   // Log out
   public logout() : void {
-    this.authUser.next(null);
     localStorage.removeItem('token');
   }
 

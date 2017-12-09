@@ -20,6 +20,8 @@ import { LogService } from '../services/log/log.service';
 import { AuthService } from '../services/auth/auth.service';
 import { AuthguardService } from '../services/authguard/authguard.service';
 
+import { AppStoreModule } from '../store/app-store.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { AuthguardService } from '../services/authguard/authguard.service';
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(createRoutes, { useHash: false }),
-    HttpClientModule
+    HttpClientModule,
+    AppStoreModule.forRoot(),
   ],
   providers: [
     GroupService,
