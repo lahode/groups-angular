@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Group } from '../../models/group.model';
-import { User } from '../../models/user.model';
 
-export const user1 = new User('soloh', 'Han', 'Solo');
+import { GroupService } from '../../services/group/group.service';
+
 export const options = ['Anyone can see the list of members',
                         'Only the owner can see the list of members'];
 
@@ -14,9 +15,13 @@ export const options = ['Anyone can see the list of members',
 })
 export class NewGroupComponent implements OnInit {
 
-  group: Group = new Group('', '', 0, false, user1, '', '');
+  error: string = '';
+  group: Group = new Group('', '', 0, false, null, '', '');
   accessOptions: string[] = [];
-  showPopup: boolean = false;
+  groupSaved: boolean = false;
+
+  constructor(private groupService: GroupService,
+              private router: Router) {}
 
   ngOnInit() {
     this.accessOptions = options;
@@ -30,7 +35,18 @@ export class NewGroupComponent implements OnInit {
     this.group.visibility = visibility;
   }
 
+  goToHomePage() {
+    if (this.groupSaved) {
+      this.router.navigate(['/']);
+    }
+  }
+
   save() {
-    this.showPopup = true;
+    this.group._id = undefined;
+    this.groupService.save(this.group).subscribe((e) => {
+      this.groupSaved = true;
+    }, error => {
+      this.error = error;
+    });
   }
 }

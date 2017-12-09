@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-4" *ngFor="let group of groups; let i = index">
-        <div class="card" [ngClass]="group.access ? 'private' : ''" (click)="showGroup(i + fromto.from)">
+        <div class="card" [ngClass]="group.access ? 'private' : ''" (click)="showGroup(group._id)">
           <h3>{{ group.name }}</h3>
           <p>{{ group.description }}</p>
         </div>
@@ -11,6 +11,7 @@
     </div>
   </div>
   <app-pager [totalelements]="groupCount" [maxperpage]="maxPerPage" [currentpos]="fromto.from" (fromTo)="changeResult($event)"></app-pager>
+  <p v-if="error" style="text-align:center; color: #F00">{{ error }}</p>
   <div class="log">
     <ul>
       <li *ngFor="let grouplog of logGroupSeen">{{ grouplog }}</li>

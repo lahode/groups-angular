@@ -25,7 +25,6 @@
     </div>
     <switch-input [value]="group.visibility" (input)="changeVisibility($event)"></switch-input>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="save()">OK</button>
-    <p>{{ group | json }}</p>
   </div>
 
   <!-- Modal -->
@@ -38,16 +37,20 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Group to Save</h4>
         </div>
-        <div class="modal-body" v-if="showPopup">
+        <div class="modal-body" class="modal-body" *ngIf="groupSaved;then showSuccess else showError"></div>
+        <ng-template #showSuccess>
           <p>Name: {{ group.name }}</p>
           <p style="white-space: pre">Description: {{ group.description }}</p>
           <p>URL: {{ group.url }}</p>
           <p>Access: {{ accessOptions[group.access] }}</p>
           <p>Public: {{ group.pub ? 'Oui' : 'Non' }}</p>
           <p>Visibility: {{ group.visibility ? 'Oui' : 'Non' }}</p>
-        </div>
+        </ng-template>
+        <ng-template #showError>
+          <p style="text-align:center; color: #F00">{{ error }}</p>
+        </ng-template>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="showPopup = false">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="goToHomePage()">Close</button>
         </div>
       </div>
 

@@ -13,6 +13,7 @@ import { Group } from '../../models/group.model';
 export class GroupComponent implements OnInit {
 
   group: Group;
+  error: string;
 
   constructor(private groupService: GroupService,
               private logService: LogService,
@@ -21,8 +22,12 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe( params => {
-      this.group = this.groupService.getGroup(params['id'])
-      this.logService.addLog(new Date(Date.now()).toLocaleString() + ' - ' + this.group.name);
+      this.groupService.getGroup(params['id']).subscribe((group) => {
+        this.group = group.group;
+        this.logService.addLog(new Date(Date.now()).toLocaleString() + ' - ' + this.group.name);
+      }, error => {
+        this.error = error;
+      });
     });
   }
 

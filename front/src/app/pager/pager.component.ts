@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-pager',
   templateUrl: './pager.component.html',
   styleUrls: ['./pager.component.scss']
 })
-export class PagerComponent implements OnInit {
+export class PagerComponent {
 
   @Input() totalelements: number;
   @Input() currentpos: number;
@@ -13,7 +13,8 @@ export class PagerComponent implements OnInit {
   @Output() fromTo  = new EventEmitter<any>();
   totalElements: number[];
 
-  ngOnInit() {
+  // Répond lorsque Angular initialise le lien sur les données en entrée (Input) ou leur changement (Lifecyclehook).
+  ngOnChanges(changes: SimpleChanges) {
     this.totalElements = Array(this.totalelements).fill(0).map((x,i)=>i);
   }
 

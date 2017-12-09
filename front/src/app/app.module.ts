@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { createRoutes } from './app.routing';
 
@@ -28,6 +29,7 @@ import { LogService } from '../services/log/log.service';
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(createRoutes, { useHash: false }),
+    HttpClientModule
   ],
   providers: [
     GroupService,

@@ -14,6 +14,7 @@ const MAX_PER_PAGE = 6;
 })
 export class HomeComponent implements OnInit {
 
+  error: any = '';
   groups: Group[];
   logGroupSeen: string[] = [];
   groupCount: number = 0;
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
   // Lance la récupération des groupes à la création du composant
   // Ajoute un observable permettant de mettre à jour les logs
   ngOnInit() {
-    this.getGroups();
+    this.getGroupRange();
     this.logService.getLogs().subscribe((logGroupSeen) => {
       this.logGroupSeen = logGroupSeen;
     });
@@ -38,16 +39,22 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/group/' + groupID + '/detail']);
   }
 
-  // Récupère le nombre total des groupes et sélectionne les groupes à afficher
-  getGroups() {
-    this.groupCount = this.groupService.getGroups().length;
-    this.groups = this.groupService.getGroupRange(this.fromto.from, this.fromto.to);
-  }
-
   // Modifie la tranche des groupes à afficher (Pagination)
   changeResult(fromTo: any) {
     this.fromto = fromTo;
-    this.groups = this.groupService.getGroupRange(this.fromto.from, this.fromto.to);
+    this.getGroupRange();
+  }
+
+  // Sélectionne la tranche des groupe à afficher pour l'affichage
+  getGroupRange() {
+    let from = this.fromto.from;
+    let to = this.fromto.to;
+    this.groupService.getGroupRange(from, to).subscribe((response) => {
+      this.groups = response.groups;
+      this.groupCount = response.total;
+    }, error => {
+      this.error = error;
+    });
   }
 
 }
