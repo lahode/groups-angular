@@ -8,7 +8,7 @@ export interface AppStateI {
     isLoading: IsLoadingStateI,
 }
 
-function isLoadedReducers (state: IsLoadingStateI = false, action: any): IsLoadingStateI {
+export function isLoadedReducers (state: IsLoadingStateI = false, action: any): IsLoadingStateI {
     switch (action.type) {
         case AppActions.CHECK_AUTH:
             return true;
@@ -18,7 +18,7 @@ function isLoadedReducers (state: IsLoadingStateI = false, action: any): IsLoadi
     }
 }
 
-function userReducers (state: UserStateI = null, action: any): UserStateI {
+export function userReducers (state: UserStateI = null, action: any): UserStateI {
     switch (action.type) {
         case AppActions.CHECK_AUTH_SUCCESS:
             return Object.assign({}, state, action.payload);

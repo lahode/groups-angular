@@ -5,12 +5,11 @@ const SW_VERSION = '0.0.1';
 const AppAssets = [
     '/',
     '/index.html',
-    '/group.module.chunk.js',
+    '/0.chunk.js',
     '/inline.bundle.js',
     '/main.bundle.js',
     '/polyfills.bundle.js',
-    '/styles.bundle.js',
-    '/vendor.bundle.js'
+    '/styles.bundle.css'
 ];
 
 // Installing SW

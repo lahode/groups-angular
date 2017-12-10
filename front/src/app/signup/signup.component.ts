@@ -11,6 +11,8 @@ import { AppActions } from '../../store/app-actions';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  firstname: string = '';
+  lastname: string = '';
   username: string = '';
   password: string = '';
   error: string = '';
